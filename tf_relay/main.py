@@ -18,7 +18,7 @@ def main():
     tf_static_relays = []
 
     try:
-        for i in range(agents):
+        for i in range(1, agents+1):
             tf_relay = TFRelay(namespace=namespace, agent=i)
             tf_static_relay = TFStaticRelay(namespace=namespace, agent=i)
             tf_relays.append(tf_relay)

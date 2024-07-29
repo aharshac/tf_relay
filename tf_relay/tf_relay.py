@@ -7,9 +7,9 @@ from rclpy.qos import QoSProfile, QoSReliabilityPolicy, QoSDurabilityPolicy
 class TFRelay(Node):
 
     def __init__(self, namespace, agent):
-        super().__init__('tf_relay'+ '_' + str(agent))
-        tf_topic = '/' + str(namespace) + '_' + str(agent)+ '/tf'
-        self.frame_prefix = str(namespace) + '_' + str(agent) + '/'
+        super().__init__('tf_relay'+ '_' + str(namespace) + str(agent))
+        tf_topic = '/' + str(namespace) + '' + str(agent)+ '/tf'
+        self.frame_prefix = '' # str(namespace) + '' + str(agent) + '/'
         self.subscription = self.create_subscription(
             msg_type=TFMessage,
             topic=tf_topic,

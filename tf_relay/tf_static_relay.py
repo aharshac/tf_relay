@@ -7,9 +7,9 @@ from rclpy.qos import QoSProfile, QoSReliabilityPolicy, QoSDurabilityPolicy
 class TFStaticRelay(Node):
 
     def __init__(self, namespace, agent):
-        super().__init__('tf_static_relay'+ '_' + str(agent))
-        tf_static_topic = '/' + str(namespace) + '_' + str(agent)+ '/tf_static'
-        self.frame_prefix = str(namespace) + '_' + str(agent) + '/'
+        super().__init__('tf_static_relay'+ '_' + str(namespace) + str(agent))
+        tf_static_topic = '/' + str(namespace) + '' + str(agent)+ '/tf_static'
+        # self.frame_prefix = str(namespace) + '' + str(agent) + '/'
         self.static_subscription = self.create_subscription(
             msg_type=TFMessage,
             topic=tf_static_topic,
@@ -22,7 +22,7 @@ class TFStaticRelay(Node):
             msg_type=TFMessage,
             topic='/tf_static',
             qos_profile=QoSProfile(reliability=QoSReliabilityPolicy.RELIABLE, durability=QoSDurabilityPolicy.TRANSIENT_LOCAL , depth=10))
-        self.frame_prefix = 'agent_1/'
+        self.frame_prefix = '' # str(namespace) + '' + str(agent) + '/'
 
     def static_tf_callback(self, msg):
         for transform in msg.transforms:
